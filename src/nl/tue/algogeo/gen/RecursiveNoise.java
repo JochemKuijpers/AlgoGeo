@@ -20,14 +20,15 @@ public class RecursiveNoise extends NoiseMap {
             map[y] = new double[width];
             for (int x = 0; x < width; x++) {
                 double value = 0;
-
+                double total = 0;
                 for (int level = skipLevels; level < levels; level++) {
                     double size = 1 << (level + 1);
                     double times = (1 << levels) / size;
                     value += noiseMaps[level].get(x / times, y / times) * (1 / size);
+                    total += (1 / size);
                 }
 
-                map[y][x] = value / 2;
+                map[y][x] = value / total;
             }
         }
     }

@@ -1,9 +1,8 @@
 package nl.tue.algogeo.gen;
 
-import nl.tue.algogeo.Dot;
-import nl.tue.algogeo.DotLabel;
-import nl.tue.algogeo.DotLabelSet;
-import nl.tue.algogeo.DotMap;
+import nl.tue.algogeo.*;
+
+import java.util.Random;
 
 public class ExperimentGenerator implements DotMapGenerator {
     @Override
@@ -12,14 +11,16 @@ public class ExperimentGenerator implements DotMapGenerator {
 
         RecursiveNoise[] noisePerLabel = new RecursiveNoise[labels.size()];
         for (int i = 0; i < labels.size(); i++) {
-            noisePerLabel[i] = new RecursiveNoise(width, height, 4);
+            noisePerLabel[i] = new RecursiveNoise(width, height, 2);
         }
 
         RecursiveNoise populationNoise = new RecursiveNoise(width, height, 2);
+        Random random = new Random();
+        random.setSeed(System.nanoTime());
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                if (populationNoise.get(x, y) > 0.01) {
+                if (populationNoise.get(x, y) > 0.5) {
                     DotLabel label = null;
                     double labelVal = Double.NEGATIVE_INFINITY;
 
@@ -29,9 +30,9 @@ public class ExperimentGenerator implements DotMapGenerator {
                             label = labels.get(i);
                         }
                     }
-
                     map.put(x, y, new Dot(label, amount));
                 }
+                // map.put(x, y, new Dot(new DotLabel(Utils.merge(Color.BLACK, Color.WHITE, (float) populationNoise.get(x, y)), ""), amount));
             }
         }
 

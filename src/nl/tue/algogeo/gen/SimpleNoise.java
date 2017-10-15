@@ -12,7 +12,7 @@ public class SimpleNoise extends NoiseMap {
         for (int y = 0; y < height; y++) {
             map[y] = new double[width];
             for (int x = 0; x < width; x++) {
-                map[y][x] = random.nextDouble() * 2 - 1;
+                map[y][x] = random.nextDouble();
             }
         }
     }

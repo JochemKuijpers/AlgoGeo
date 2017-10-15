@@ -16,22 +16,23 @@ public class Main {
     }
 
     private void run() throws IOException {
+        int mapSize = 128;
+        int pixelsPerDot = 16;
+        int maxZoom = 1;
 
         System.out.println("Generating labels ...");
         DotLabelSet labels = DotLabelSet.create(4);
 
         System.out.println("Generating dot map ...");
         DotMapGenerator generator = getGenerator();
-        DotMap originalMap = generator.generate(128, 128, 10, labels);
+        DotMap originalMap = generator.generate(mapSize, mapSize, 10, labels);
 
-        System.out.println("Rendering original dotmap...");
+        System.out.println("Rendering original dot map ...");
         DotMapRenderer renderer = new DotMapRenderer();
-        int pixelsPerDot = 16;
-        int maxZoom = 6;
         renderer.renderPng(originalMap, pixelsPerDot, "original.png");
         DotMapScaler scaler = getScaler();
 
-        for (int zoom = 1; zoom < maxZoom; zoom++) {
+        for (int zoom = 1; zoom <= maxZoom; zoom++) {
 
             System.out.println("Calculating zoom level: " + zoom + " ...");
             DotMap scaledMap = scaler.scaleDotMap(originalMap,
