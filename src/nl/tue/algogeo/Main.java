@@ -2,6 +2,9 @@ package nl.tue.algogeo;
 
 import nl.tue.algogeo.algo.DotMapScaler;
 import nl.tue.algogeo.algo.SampleAlgo;
+import nl.tue.algogeo.gen.DotMapGenerator;
+import nl.tue.algogeo.gen.ExperimentGenerator;
+import nl.tue.algogeo.gen.SimpleGenerator;
 import nl.tue.algogeo.renderer.DotMapRenderer;
 
 import java.io.IOException;
@@ -15,7 +18,7 @@ public class Main {
     private void run() throws IOException {
 
         System.out.println("Generating labels ...");
-        DotLabelSet labels = DotLabelSet.create(5);
+        DotLabelSet labels = DotLabelSet.create(4);
 
         System.out.println("Generating dot map ...");
         DotMapGenerator generator = getGenerator();
@@ -23,9 +26,9 @@ public class Main {
 
         System.out.println("Rendering original dotmap...");
         DotMapRenderer renderer = new DotMapRenderer();
-        int pixelsPerDot = 32;
+        int pixelsPerDot = 16;
         int maxZoom = 6;
-        renderer.renderPng(originalMap, 16, "original.png");
+        renderer.renderPng(originalMap, pixelsPerDot, "original.png");
         DotMapScaler scaler = getScaler();
 
         for (int zoom = 1; zoom < maxZoom; zoom++) {
@@ -47,7 +50,8 @@ public class Main {
      * @return Class implementing generation algorithm to be used with the program
      */
     private DotMapGenerator getGenerator() {
-        return new SimpleGenerator();
+        return new ExperimentGenerator();
+//        return new SimpleGenerator();
     }
 
     /**

@@ -1,4 +1,8 @@
-package nl.tue.algogeo;
+package nl.tue.algogeo.gen;
+
+import nl.tue.algogeo.Dot;
+import nl.tue.algogeo.DotLabelSet;
+import nl.tue.algogeo.DotMap;
 
 import java.util.Random;
 
