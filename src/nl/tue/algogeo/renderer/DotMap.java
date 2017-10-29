@@ -1,4 +1,4 @@
-package nl.tue.algogeo;
+package nl.tue.algogeo.renderer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ public class DotMap {
 
     private int width;
     private int height;
-    private Map<Integer, Dot> positionMap;
+    private Map<Integer, Integer> positionMap;
 
     public DotMap(int width, int height) {
         this.width = width;
@@ -17,34 +17,11 @@ public class DotMap {
         this.positionMap = new HashMap<>();
     }
 
-    public Dot get(int x, int y) {
+    public Integer get(int x, int y) {
         return this.positionMap.get(key(x, y));
     }
 
-    /**
-     * Returns all dots found in a rectangle on this dot map
-     * @param xMin minimum x (inclusive)
-     * @param yMin maximum x (inclusive)
-     * @param xMax minimum y (inclusive)
-     * @param yMax maximum y (inclusive)
-     * @return list of dots found in the rectangle
-     */
-    public List<Dot> getRect(int xMin, int yMin, int xMax, int yMax) {
-        List<Dot> result = new ArrayList<>();
-
-        for (int y = 0; y <= yMax; y++) {
-            for (int x = xMin; x <= xMax; x++) {
-                Dot dot = get(x,y);
-                if (dot != null) {
-                    result.add(dot);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    public void put(int x, int y, Dot dot) {
+    public void put(int x, int y, Integer dot) {
         this.positionMap.put(key(x, y), dot);
     }
 

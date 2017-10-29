@@ -1,8 +1,6 @@
 package nl.tue.algogeo.renderer;
 
 import nl.tue.algogeo.Color;
-import nl.tue.algogeo.Dot;
-import nl.tue.algogeo.DotMap;
 import nl.tue.algogeo.Utils;
 
 import javax.imageio.ImageIO;
@@ -23,7 +21,7 @@ public class DotMapRenderer {
 
         for (int mapY = 0; mapY < map.getHeight(); mapY++) {
             for (int mapX = 0; mapX < map.getWidth(); mapX++) {
-                Dot dot = map.get(mapX, mapY);
+                Integer dot = map.get(mapX, mapY);
                 if (dot != null) {
                     drawDot(mapX, mapY, dot);
                 } else {
@@ -36,8 +34,8 @@ public class DotMapRenderer {
         ImageIO.write(image, "png", outputFile);
     }
 
-    private void drawDot(int mapX, int mapY, Dot dot) {
-        Color color = dot.getLabel().getColor();
+    private void drawDot(int mapX, int mapY, Integer dot) {
+        Color color = Color.get(dot);
 
         double dotCenterX = mapX * pixelsPerDot + .5 * pixelsPerDot -.5;
         double dotCenterY = mapY * pixelsPerDot + .5 * pixelsPerDot -.5;

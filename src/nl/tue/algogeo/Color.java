@@ -1,5 +1,7 @@
 package nl.tue.algogeo;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 public class Color {
     public static final Color RED = new Color(1.0f, 0.0f, 0.0f);
     public static final Color ORANGE = new Color(1.0f, 0.3f, 0.0f);
@@ -25,5 +27,21 @@ public class Color {
         this.r = r;
         this.g = g;
         this.b = b;
+    }
+
+    public static Color get(int n) {
+        switch (n) {
+            case 0: return RED;
+            case 1: return YELLOW;
+            case 2: return GREEN;
+            case 3: return BLUE;
+            case 4: return MAGENTA;
+            case 5: return ORANGE;
+            case 6: return LIME;
+            case 7: return CYAN;
+            case 8: return PURPLE;
+            case 9: return BLACK;
+            default: return BLACK;
+        }
     }
 }
