@@ -25,11 +25,13 @@ public class RendererMain {
 
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
+            int size = getSizeFromLine(line);
             String[] labels = line.split(",");
-            x = 0;
             if (map == null) {
-                map = new DotMap(labels.length, labels.length);
+                map = new DotMap(size, size);
             }
+
+            x = 0;
 
             for (String label : labels) {
                 if (!label.equals("")) {
@@ -42,5 +44,14 @@ public class RendererMain {
 
         DotMapRenderer renderer = new DotMapRenderer();
         renderer.renderPng(map, (int) Math.ceil(1000.0 / map.getWidth()), "output.png");
+    }
+
+    private static int getSizeFromLine(String line) {
+        int count = 1;
+        for (int n = 0; n < line.length(); n += 1) {
+            if (line.charAt(n) == ',')
+                count += 1;
+        }
+        return count;
     }
 }

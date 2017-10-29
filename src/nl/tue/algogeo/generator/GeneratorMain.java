@@ -26,6 +26,7 @@ public class GeneratorMain {
         Map<String, Generator> gens = new HashMap<>();
         gens.put("uniform", new UniformGenerator());
         gens.put("nearpoint", new NearPointGenerator());
+        gens.put("checker", new CheckerGenerator());
 
         for (String arg: args) {
             String[] argParts = arg.split("=", 2);
@@ -139,6 +140,7 @@ public class GeneratorMain {
         System.out.println("  --gen         Type of generation algorithm to use");
         System.out.println("    uniform     Use a uniform distribution.");
         System.out.println("    nearpoint   Generate datapoints near a point for every label.");
+        System.out.println("    checker     Generate datapoints in a checkerboard pattern.");
         System.out.println("");
 //        System.out.println("  --file        Output file for the generated data set");
 //        System.out.println("                Defaults to output.txt");
